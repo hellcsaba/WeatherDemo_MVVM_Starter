@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/BME/BME_6/Onlab/WeatherDemo_MVVM_Starter/app/src/main/res/layout/activity_weather_details.xml" value="0.18009118541033434" />
+        <entry key="..\:/BME/BME_6/Onlab/WeatherDemo_MVVM_Starter/app/src/main/res/layout/city_row.xml" value="0.18009118541033434" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>
