@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import hu.bme.aut.weatherdemo.R
 import hu.bme.aut.weatherdemo.databinding.ActivityWeatherDetailsBinding
+import hu.bme.aut.weatherdemo.databinding.CityRowBinding
 import hu.bme.aut.weatherdemo.model.network.WeatherResult
 import kotlinx.android.synthetic.main.activity_weather_details.*
 import java.text.SimpleDateFormat
@@ -64,6 +65,7 @@ class WeatherDetailsActivity : AppCompatActivity() {
         val sunsetDate = Date(weatherData.sys.sunset?.toLong()!! * 1000)
         val sunsetTime = sdf.format(sunsetDate)
         binding.tvSunset.text = getString(R.string.sunset, sunsetTime)
+
     }
 
     private fun render(result: WeatherViewState){
@@ -76,6 +78,6 @@ class WeatherDetailsActivity : AppCompatActivity() {
                 binding.tvMain.text =result.exceptionMsg
             }
         }
-    }
+   }
 
 }
