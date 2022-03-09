@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import hu.bme.aut.weatherdemo.BuildConfig
 import hu.bme.aut.weatherdemo.R
+import hu.bme.aut.weatherdemo.databinding.ActivityWeatherDetailsBinding
 import hu.bme.aut.weatherdemo.databinding.CityRowBinding
 import hu.bme.aut.weatherdemo.model.network.WeatherResult
 import hu.bme.aut.weatherdemo.network.WeatherAPI
@@ -24,7 +25,7 @@ class WeatherDetailsActivity : AppCompatActivity() {
 
     private val weatherViewModel : WeatherViewModel by viewModels()
 
-    //private lateinit var binding: Binding
+    private lateinit var binding: ActivityWeatherDetailsBinding
 
     companion object {
         const val KEY_CITY = "KEY_CITY"
@@ -34,10 +35,11 @@ class WeatherDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather_details)
+        binding = ActivityWeatherDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         cityName = intent.getStringExtra(KEY_CITY)!!
-        tvCity.text = cityName
+        binding.tvCity.text = cityName
     }
 
     override fun onResume() {
@@ -66,18 +68,18 @@ class WeatherDetailsActivity : AppCompatActivity() {
             .into(ivWeatherIcon)
 
 
-        tvMain.text = weatherData?.weather?.get(0)?.main
-        tvDescription.text = weatherData?.weather?.get(0)?.description
-        tvTemperature.text =
+        binding.tvMain.text = weatherData?.weather?.get(0)?.main
+        binding.tvDescription.text = weatherData?.weather?.get(0)?.description
+        binding.tvTemperature.text =
             getString(R.string.temperature, weatherData?.main?.temp?.toFloat().toString())
 
         val sdf = SimpleDateFormat("h:mm a z", Locale.getDefault())
         val sunriseDate = Date((weatherData?.sys?.sunrise?.toLong())!! * 1000)
         val sunriseTime = sdf.format(sunriseDate)
-        tvSunrise.text = getString(R.string.sunrise, sunriseTime)
+        binding.tvSunrise.text = getString(R.string.sunrise, sunriseTime)
         val sunsetDate = Date(weatherData.sys.sunset?.toLong()!! * 1000)
         val sunsetTime = sdf.format(sunsetDate)
-        tvSunset.text = getString(R.string.sunset, sunsetTime)
+        binding.tvSunset.text = getString(R.string.sunset, sunsetTime)
     }
 
 }
