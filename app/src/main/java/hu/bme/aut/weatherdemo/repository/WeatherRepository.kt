@@ -1,11 +1,10 @@
 package hu.bme.aut.weatherdemo.repository
 
-import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.weatherdemo.datasource.WeatherNetworkDataSource
-import hu.bme.aut.weatherdemo.ui.weather.WeatherViewState
+import hu.bme.aut.weatherdemo.util.NetworkResponse
 
 class WeatherRepository {
-    fun getWeatherData(cityName: String): MutableLiveData<WeatherViewState>{
+    suspend fun getWeatherData(cityName: String): NetworkResponse<Any> {
         return WeatherNetworkDataSource.getWeatherData(cityName)
     }
 }
