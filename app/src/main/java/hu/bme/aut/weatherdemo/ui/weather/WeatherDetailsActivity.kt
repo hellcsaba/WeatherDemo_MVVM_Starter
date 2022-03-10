@@ -31,19 +31,22 @@ class WeatherDetailsActivity : AppCompatActivity() {
 
         cityName = intent.getStringExtra(KEY_CITY)!!
         binding.tvCity.text = cityName
+
+        weatherViewModel.getWeatherLiveData().observe(this,
+            {weatherResult -> render(weatherResult)})
     }
 
     override fun onResume() {
         super.onResume()
 
-        getWeatherData()
+        weatherViewModel.getWeatherData(cityName)
     }
 
-    private fun getWeatherData() {
-        weatherViewModel.getWeatherData(cityName)?.observe(this,
+   /* private fun getWeatherData() {
+        weatherViewModel.getWeatherData(cityName).observe(this,
             {weatherViewState -> render(weatherViewState)})
     }
-
+*/
     private fun processResponse(
         weatherData: WeatherResult?,
         icon: String?
